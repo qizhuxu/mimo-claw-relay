@@ -23,20 +23,6 @@ import os
 import subprocess
 import sys
 
-# ── Auto-install dependencies ──────────────────────────────────────────────────
-def ensure_deps():
-    for pkg in ("websockets", "httpx"):
-        try:
-            __import__(pkg)
-        except ImportError:
-            print(f"[bridge] Installing {pkg}...")
-            subprocess.check_call(
-                [sys.executable, "-m", "pip", "install", "-q", pkg],
-                stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
-            )
-            print(f"[bridge] {pkg} installed.")
-
-ensure_deps()
 
 import websockets  # noqa: E402
 import httpx       # noqa: E402
